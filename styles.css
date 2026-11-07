@@ -15,3 +15,16 @@
 .inspiration{background:#0e0c0f}.celebrity-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px;margin-top:30px}.celebrity-card{position:relative;overflow:hidden;margin:0;background:#1c1717;border:1px solid #98774a66;min-height:390px}.celebrity-card img{width:100%;height:430px;display:block;object-fit:cover;object-position:center 25%;filter:saturate(.7) contrast(1.08);transition:transform .7s ease}.celebrity-card:hover img{transform:scale(1.035)}.celebrity-card figcaption{padding:20px 22px;background:linear-gradient(transparent,#0c0b0df5 15%);position:absolute;bottom:0;left:0;right:0;display:grid;gap:5px}.celebrity-card strong{font:30px 'Playfair Display',serif}.celebrity-card span{color:var(--gold);font-size:13px}.celebrity-card small{font-size:10px;color:#c3bdb6}.celebrity-card small a{text-decoration:underline}
 @media(max-width:580px){.hero-depth .orbital{width:85vw;height:85vw}.hero-shard{width:70px;height:120px}.celebrity-grid{grid-template-columns:1fr}.celebrity-card img{height:390px}}
 @media(prefers-reduced-motion:reduce){.hero-depth{transform:none!important}.hero-depth .orbital{animation:none!important}}
+
+/* Scroll-linked cinematic choreography: reversible on upward scrolling */
+.hero{--scroll-progress:0}
+.hero-depth{scale:calc(1 + var(--scroll-progress)*.65);opacity:calc(1 - var(--scroll-progress)*.72);translate:0 calc(var(--scroll-progress)*110px);rotate:calc(var(--scroll-progress)*-26deg)}
+.hero-content{opacity:calc(1 - var(--scroll-progress)*1.15);translate:0 calc(var(--scroll-progress)*-115px);scale:calc(1 - var(--scroll-progress)*.16)}
+.scroll-reveal{opacity:.15;transform:translate3d(0,54px,0) scale(.975);transition:opacity .8s cubic-bezier(.2,.7,.2,1),transform .9s cubic-bezier(.2,.7,.2,1);will-change:opacity,transform}
+.scroll-reveal.is-visible{opacity:1;transform:translate3d(0,0,0) scale(1)}
+.section{overflow:clip}
+.section .celebrity-card:nth-child(even){transition-delay:.12s}
+.section .card:nth-child(3n + 2){transition-delay:.09s}
+.section .card:nth-child(3n){transition-delay:.18s}
+.section .sculpture{background-position:center calc(50% + var(--section-shift,0)*30px)}
+@media(prefers-reduced-motion:reduce){.hero-depth,.hero-content{scale:1!important;translate:none!important;rotate:none!important;opacity:1!important}.scroll-reveal{opacity:1!important;transform:none!important;transition:none!important}}
